@@ -1,3 +1,21 @@
+/*
+ * 高中生解題系統a012題
+ * Input: 
+ * 每組測試資料1列，有2個整數，代表Hashmat及敵人的士兵數或反之。這些數不會超過263。
+ * Output:
+ * 對每組測試資料請輸出Hashmat與敵人士兵數目的差（正數）
+ *
+ * Sample Input #1
+ * 10 12
+ * 14 10
+ *
+ * Sample Output #1
+ * 2
+ * 4
+ *
+ * 增加困難：假定input的組數不一定，sample是兩組，但可能是1,,4,20組....
+ * 希望依照組數依序output答案
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

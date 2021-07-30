@@ -11,7 +11,8 @@
 */
 #include <stdio.h>
 
-void duplicateZeros(int* arr, int arrSize) {
+// my original version
+void duplicateZerosv1(int* arr, int arrSize) {
     int tempArray[arrSize];
     int index = 0;
     
@@ -34,10 +35,33 @@ void duplicateZeros(int* arr, int arrSize) {
     }
 }
 
+// better version
+void duplicateZeros(int* arr, int arrSize) {
+    int shift = 0, i;
+    for (i = 0; (i+shift) < arrSize; i++) {
+        // if else statement shorcut. only need true part
+        (arr[i] == 0) && (shift ++);
+    }
+    for (i-=1; i>=0; i--) {
+        /* arr[i+shift] = arr[i]; 
+         * // using the following setence instead.
+         * // causing addressSanitizer error:heap-buffer-overflow on address
+         * // need to check first.
+        */
+        if (i+shift < arrSize) {
+            arr[i+shift] =arr[i];
+        }
+        if (arr[i] == 0) {
+            shift-=1;
+            arr[i+shift] = arr[i];
+        }
+    }
+}
+
 int main() {
-    int Input[] = {1,0,2,3,0,4,5,0};
+    // int Input[] = {0,0,0,0,0,0,0,0};
     // int Input[] = {1,2,3};
-    // int Input[] = {1,0,0,0,0,4,5,0};
+    int Input[] = {1,0,2,3,0,4,5,0};
     size_t input_len = sizeof(Input)/sizeof(Input[0]);
 
     duplicateZeros(Input, input_len);
